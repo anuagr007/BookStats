@@ -271,7 +271,7 @@ def create_img(book_title,user_input):
         cv2.imwrite("poster_" + i[0:2] + ".png", image1)
 
  
-        img_path2 = r"m6.jpg"
+        img_path2 = ["m6.jpg","m6.jpg"]
 
         image2 = cv2.imread(img_path2)
 
@@ -450,6 +450,4 @@ if selected2 == "Search":
                 bokk = user_input + ' Book'
                 params = {'q': bokk}
                 url1 = url + urllib.parse.urlencode(params)
-                st.link_button("Click for more info", url1)
-        
-        
+                st.link_button("Click for more info", url1)    
