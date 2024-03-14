@@ -10,7 +10,6 @@ import regex
 import extra_streamlit_components as stx
 from streamlit_pills import pills
 import pandas as pd
-from nltk.corpus import stopwords
 from bs4 import BeautifulSoup
 import urllib.parse
 from urllib.request import urlopen
