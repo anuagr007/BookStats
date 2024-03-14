@@ -356,9 +356,7 @@ if selected2 == "Search":
     con3 = st.container(border = True)
 
     try:
-        if spe_text:
-            book_des = book_info(spe_text)
-        else:
+     
             book_des = book_info(user_input)
 
 
