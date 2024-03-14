@@ -371,17 +371,7 @@ if selected2 == "Search":
             book_genre = book_des[3]
             rating_count = book_des[4]
             
-            nlp = spacy.load("en_core_web_sm")
-            ner_tag = {(ent.text.strip(), ent.label_) for ent in nlp(book_summary).ents}
-            ner_tagg = pd.DataFrame(ner_tag, columns = ['Name','Entity'])
-            character = ner_tagg[ner_tagg['Entity'] == 'PERSON']['Name']
-            character = character.values.tolist()
-            rem = book_title.split('by')[1].strip()
-
-            if rem in character:
-                character.remove(rem)
-            if len(character) == 0:
-                character = ['Non Fiction','Inspired through real events']
+            
             if "...more" in book_genre:
                 book_genre.remove("...more")
 
@@ -399,12 +389,10 @@ if selected2 == "Search":
                 st.info(book_title)
                 st.write(book_summary)
             with c2:
-                g1 = st.container()
+                
                 g2 = st.container()
                 g3 = st.container()
-                with g1:
-                    st.subheader("🦰 :blue[Characters]")
-                    pills('Jump into the world of',character, key = "p1", index = None)
+                
                 with g2:
                     st.subheader("🎭 :blue[Genre]")
                     pills('This book is',book_genre, key = "p2",index = None)
