@@ -4,7 +4,6 @@ import requests
 import json
 import re
 import pandas as pd
-from nltk.tokenize import word_tokenize 
 import time
 import numpy as np
 import regex
@@ -22,6 +21,7 @@ import cv2
 from PIL import ImageFont, ImageDraw, Image
 from typing import Optional, Tuple
 from typing import Literal
+from streamlit_mic_recorder import mic_recorder,speech_to_text
 
 # Page setting
 st.set_page_config(layout="wide")
@@ -271,7 +271,7 @@ def create_img(book_title,user_input):
         cv2.imwrite("poster_" + i[0:2] + ".png", image1)
 
  
-        img_path2 = ["m6.jpg","m6.jpg"]
+        img_path2 = r"m6.jpg"
 
         image2 = cv2.imread(img_path2)
 
@@ -450,4 +450,5 @@ if selected2 == "Search":
                 bokk = user_input + ' Book'
                 params = {'q': bokk}
                 url1 = url + urllib.parse.urlencode(params)
-                st.link_button("Click for more info", url1)    
+                st.link_button("Click for more info", url1)
+     
