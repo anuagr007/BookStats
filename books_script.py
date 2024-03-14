@@ -338,7 +338,7 @@ if selected2 == "Search":
 
     with prompt_placeholder:
         
-        cols = st.columns((6,0.35,1.5))
+        cols = st.columns((6,1.5))
         with cols[0]:
             try:
                 user_input = st.text_input("ERT",
@@ -346,10 +346,8 @@ if selected2 == "Search":
                 label_visibility="collapsed")
             except:
                 st.info("Enter book of your choice")
+        
         with cols[1]:
-            spe_text=speech_to_text(language='en', start_prompt="🎙️",
-        stop_prompt="🔴",just_once=True,key='STT')
-        with cols[2]:
             frm_smt = st.form_submit_button("Submit")
 
 
