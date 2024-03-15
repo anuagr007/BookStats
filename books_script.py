@@ -372,7 +372,7 @@ if selected2 == "Search":
 
         if frm_smt:
             with con1:
-                c1,c2 = st.columns((1,3))
+                c1,c2 = st.columns((1,2.5))
                 with c2:
                     st.subheader("📑 :blue[Synopsis] ")
                     st.info(book_title)
