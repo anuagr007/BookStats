@@ -414,7 +414,7 @@ if selected2 == "Search":
                         with coo1:
                             st.header(book_rating)
                         with coo2:
-                            st.subheader(rating_count)
+                            st.write("(",rating_count,")")
                         if float(book_rating) > 4.00:
                             st.write(":star2: :star2: :star2: :star2:")
                         elif float(book_rating) > 3.00 and float(book_rating) < 4.00:
