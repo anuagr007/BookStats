@@ -175,6 +175,8 @@ def book_info(bookname):
     rating_cnt = soup.find("span", {"data-testid": "ratingsCount"}).get_text()
     desc = soup.find("div", {"class": "BookPageMetadataSection__description"}).get_text()
     genre = soup.find_all("div", {"class": "BookPageMetadataSection__genres"})
+    images = soup.find_all("img", {"class": "ResponsiveImage"})[0]
+    img_src = images['src']
     genres = []
     if len(genre) == 0:
         genres = ["Good to read","Fun"]
@@ -191,7 +193,7 @@ def book_info(bookname):
 
     #genres = genres[:-1]
     time.sleep(1)
-    return title, rating, desc, genres,rating_cnt
+    return title, rating, desc, genres,rating_cnt,img_src
     
 def create_img(book_title,user_input):
     book_title1 = book_title.split("by")
@@ -362,6 +364,7 @@ if selected2 == "Search":
         book_rating = book_des[1]
         book_genre = book_des[3]
         rating_count = book_des[4]
+        book_image = book_des[5]
         
             
         if "...more" in book_genre:
@@ -370,33 +373,13 @@ if selected2 == "Search":
         if frm_smt:
             with con1:
                 c1,c2 = st.columns(2)
-                with c1:
+                with c2:
                     st.subheader("📑 :blue[Synopsis] ")
                     st.info(book_title)
                     st.write(book_summary)
-                with c2:
+                with c1:
+                    st.image(book_image, width = 300)
                     
-                    g2 = st.container()
-                    g3 = st.container()
-                    
-                    with g2:
-                        st.subheader("🎭 :blue[Genre]")
-                        pills('This book is',book_genre, key = "p2",index = None)
-                    with g3:
-                        st.subheader("👍 :blue[User Rating] ")
-                        coo1,coo2 = st.columns((1,8))
-                        with coo1:
-                            st.header(book_rating)
-                        with coo2:
-                            st.subheader(rating_count)
-                        if float(book_rating) > 4.00:
-                            st.write(":star2: :star2: :star2: :star2:")
-                        elif float(book_rating) > 3.00 and float(book_rating) < 4.00:
-                            st.write(":star2: :star2: :star2:")
-                        elif float(book_rating) > 2.00 and float(book_rating) < 3.00:
-                            st.write(":star2: :star2:")
-                        elif float(book_rating) > 1.00 and float(book_rating) < 2.00:
-                            st.write(":star2:")
     
     
            
@@ -418,12 +401,35 @@ if selected2 == "Search":
                         st.image(img_list[2])
                         
                 with c6:
-                    st.subheader("🌐 :blue[Search on Google] ")
-                    url = 'https://www.google.com/search?'
-                    bokk = user_input + ' Book'
-                    params = {'q': bokk}
-                    url1 = url + urllib.parse.urlencode(params)
-                    st.link_button("Click for more info", url1)
-     
+                    g2 = st.container()
+                    g3 = st.container()
+                    g4 = st.container()
+                    
+                    with g2:
+                        st.subheader("🎭 :blue[Genre]")
+                        pills('This book is',book_genre, key = "p2",index = None)
+                    with g3:
+                        st.subheader("👍 :blue[User Rating] ")
+                        coo1,coo2 = st.columns((1,8))
+                        with coo1:
+                            st.header(book_rating)
+                        with coo2:
+                            st.subheader(rating_count)
+                        if float(book_rating) > 4.00:
+                            st.write(":star2: :star2: :star2: :star2:")
+                        elif float(book_rating) > 3.00 and float(book_rating) < 4.00:
+                            st.write(":star2: :star2: :star2:")
+                        elif float(book_rating) > 2.00 and float(book_rating) < 3.00:
+                            st.write(":star2: :star2:")
+                        elif float(book_rating) > 1.00 and float(book_rating) < 2.00:
+                            st.write(":star2:")
+                    with g4:
+                        st.subheader("🌐 :blue[Search on Google] ")
+                        url = 'https://www.google.com/search?'
+                        bokk = user_input + ' Book'
+                        params = {'q': bokk}
+                        url1 = url + urllib.parse.urlencode(params)
+                        st.link_button("Click for more info", url1)
+         
     except IndexError:
         st.info("Enter full name of the book")
