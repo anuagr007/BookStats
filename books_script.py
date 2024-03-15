@@ -342,7 +342,7 @@ if selected2 == "Search":
         with cols[0]:
             try:
                 user_input = st.text_input("ERT",
-                value="Which book is on your mind today?",
+                placeholder="Which book is on your mind today?",
                 label_visibility="collapsed")
             except:
                 st.info("Enter book of your choice")
