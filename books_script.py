@@ -426,4 +426,4 @@ if selected2 == "Search":
                     st.link_button("Click for more info", url1)
      
     except IndexError:
-        st.info("Enter correct name of the book")
+        st.info("Enter full name of the book")
